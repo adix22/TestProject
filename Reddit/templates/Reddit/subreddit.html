@@ -1,13 +1,18 @@
 {% extends 'Reddit/base.html' %}
 
 {% block content %}
-
 <p>Test page for main subreddit: {{ name }}</p>
 <ul>
-    {% for subreddits in subreddit %}
+    {% for events in all_events %}
+        {% if events.subreddit == name %}
         <li>
-        <a href ="{% url 'Reddit:subreddit' subreddits.name %}">{{ subreddits }}</a>
+            <strong>{{ events.title }}</strong>
         </li>
+        <li>
+        {{ events.post }}
+        </li>
+        <br>
+        {% endif %}
         {% empty %}
         <li>No posts have been added yet</li>
     {% endfor %}

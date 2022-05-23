@@ -18,7 +18,9 @@ def subreddits(request):
 def subreddit(request, subreddit_name):
     """Main subreddit view"""
     name = Subreddit.objects.get(name=subreddit_name)
-    context = {'name': name}
+    all_events = Post.objects.all()
+    context = {'all_events': all_events,
+               'name': name}
     return render(request, 'Reddit/subreddit.html', context)
 
 
