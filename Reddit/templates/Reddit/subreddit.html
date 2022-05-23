@@ -4,17 +4,17 @@
 <p>Test page for main subreddit: {{ name }}</p>
 <ul>
     {% for events in all_events %}
-        {% if events.subreddit == name %}
         <li>
-            <strong>{{ events.title }}</strong>
+            <strong>
+            <a href ="{% url 'Reddit:post' events.subreddit events.random_url events.slug %}">{{ events.title }}</a>
+            </strong>
         </li>
         <li>
         {{ events.post }}
         </li>
         <br>
-        {% endif %}
         {% empty %}
-        <li>No posts have been added yet</li>
+        <p>No posts have been added yet</p>
     {% endfor %}
 
 </ul>
