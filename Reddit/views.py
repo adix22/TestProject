@@ -31,11 +31,13 @@ def post(request, subreddit_name, random_url, slug):
     slug = Post.objects.get(slug=slug)
     title = slug.title
     post = random_url.post
+    image = random_url.image
 
     context = {'name': name,
                'random_url': random_url,
                'slug': slug,
                'title': title,
-               'post': post}
+               'post': post,
+               'image': image,}
 
     return render(request, 'Reddit/post.html', context)

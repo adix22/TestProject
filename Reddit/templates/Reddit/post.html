@@ -5,5 +5,11 @@
 <p>{{ title }}</p>
 <p>{{ post }}</p>
 
+{% if random_url.image %}
+    <img src="{{ random_url.image.url }}"
+    width="500"
+    height="500"
+    alt="image"/>
+{% endif %}
 
 {% endblock content %}

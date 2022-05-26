@@ -11,6 +11,12 @@
         </li>
         <li>
         {{ events.post }}
+        {% if events.image %}
+        <img src="{{ events.image.url }}"
+            width="50"
+            height="50"
+            alt="image"/>
+        {% endif %}
         </li>
         <br>
         {% empty %}

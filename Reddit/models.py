@@ -19,6 +19,7 @@ class Post(models.Model):
     subreddit = models.ForeignKey(Subreddit, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)  # Remember to create text to unique url converter!!
     post = models.TextField(max_length=500, blank=True)
+    image = models.ImageField(upload_to='images/', blank=True)
     date_added = models.DateTimeField(auto_now=True)  # This will work locally only!!
     random_url = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
     slug = models.SlugField(max_length=50, null=True, blank=True)

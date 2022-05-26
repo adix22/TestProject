@@ -2,7 +2,8 @@
 
 from django.urls import path
 from .import views
-
+from django.conf.urls.static import static
+from django.conf import settings
 
 app_name = "Reddit"
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
     # Individual post page
     path('subreddits/<str:subreddit_name>/<uuid:random_url>/<slug:slug>', views.post, name='post'),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
