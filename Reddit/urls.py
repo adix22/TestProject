@@ -15,6 +15,10 @@ urlpatterns = [
     path('subreddits/<str:subreddit_name>/', views.subreddit, name='subreddit'),
     # Individual post page
     path('subreddits/<str:subreddit_name>/<uuid:random_url>/<slug:slug>', views.post, name='post'),
+    # Urls for user added content
+    # New subbreddit page
+    path('new_subreddit/', views.new_subreddit, name="new_subreddit"),
+    # New post page
+    path('subreddits/<str:subreddit_name>/new_post/', views.new_post, name="new_post"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

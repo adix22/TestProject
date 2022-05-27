@@ -1,0 +1,14 @@
+{% extends 'Reddit/base.html' %}
+
+{% block content %}
+
+    <p><a href="{% url 'Reddit:subreddit' subreddit %}">{{ name }}</a></p>
+
+    <p>Add new post:</p>
+    <form action="{% url 'Reddit:new_post' subreddit %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit">Add post</button>
+    </form>
+
+{% endblock content %}

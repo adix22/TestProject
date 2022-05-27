@@ -2,6 +2,12 @@
 
 {% block content %}
 <p>Test page for main subreddit: {{ name }}</p>
+<p>Posts:</p>
+<p>
+    <a href="{% url 'Reddit:new_post' name %}">Add new post.</a>
+</p>
+
+
 <ul>
     {% for events in all_events %}
         <li>

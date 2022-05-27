@@ -16,10 +16,12 @@
 {% for obj in object_list %}
     <br/>
     <li>
-    <ul>{{ obj.date_added }}</ul>
-    <ul>{{ obj.comment }}</ul>
+    <ul>{{ obj.date_added|date:'Y. M d, H:i' }}</ul>
+    <ul>{{ obj.comment|linebreaks }}</ul>
     </li>
     <br/>
+    {% empty %}
+    <li>There are no comments added yet</li>
 {% endfor %}
 
 
