@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Subreddit, Post
+from .models import Subreddit, Post, Comment
 
 
 def index(request):
@@ -32,12 +32,14 @@ def post(request, subreddit_name, random_url, slug):
     title = slug.title
     post = random_url.post
     image = random_url.image
+    queryset = Comment.objects.filter(post=slug)
 
     context = {'name': name,
                'random_url': random_url,
                'slug': slug,
                'title': title,
                'post': post,
-               'image': image,}
+               'image': image,
+               'object_list': queryset, }
 
     return render(request, 'Reddit/post.html', context)

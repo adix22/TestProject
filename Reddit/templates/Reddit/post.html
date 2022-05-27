@@ -12,4 +12,15 @@
     alt="image"/>
 {% endif %}
 
+
+{% for obj in object_list %}
+    <br/>
+    <li>
+    <ul>{{ obj.date_added }}</ul>
+    <ul>{{ obj.comment }}</ul>
+    </li>
+    <br/>
+{% endfor %}
+
+
 {% endblock content %}

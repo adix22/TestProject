@@ -32,3 +32,14 @@ class Post(models.Model):
     def __str__(self):
         """Return two representations of string models"""
         return f"{self.title, self.post, self.slug, self.random_url}"
+
+
+class Comment(models.Model):
+    """Model for commenting posts"""
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    comment = models.TextField(max_length=200)
+    date_added = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        """Return string of comment."""
+        return f"{self.comment}"
