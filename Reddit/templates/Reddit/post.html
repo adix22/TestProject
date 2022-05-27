@@ -1,6 +1,6 @@
 {% extends 'Reddit/base.html' %}
-
 {% block content %}
+<a href="{% url "Reddit:subreddit" name %}">{{ name }}</a>
 
 <p>{{ title }}</p>
 <p>{{ post }}</p>
