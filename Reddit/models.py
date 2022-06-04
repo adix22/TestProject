@@ -36,9 +36,10 @@ class Post(models.Model):
 
 class Comment(models.Model):
     """Model for commenting posts"""
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True, blank=True)
     comment = models.TextField(max_length=200)
     date_added = models.DateTimeField(auto_now=True)
+    temporary_key = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False, blank=True)
 
     def __str__(self):
         """Return string of comment."""

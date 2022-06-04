@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Subreddit, Post
+from .models import Subreddit, Post, Comment
 
 
 class SubredditForm(forms.ModelForm):
@@ -20,3 +20,12 @@ class PostForm(forms.ModelForm):
         widgets = {'title': forms.Textarea(attrs={'cols': 80,
                                                   'rows': 1}),
                    'post': forms.Textarea(attrs={'cols': 80})}
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['comment']
+        labels = {'comment': ''}
+        widgets = {'comment': forms.Textarea(attrs={'cols': 80,
+                                                    'rows': 40})}

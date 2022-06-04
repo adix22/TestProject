@@ -4,6 +4,7 @@
 
 <p>{{ title }}</p>
 <p>{{ post }}</p>
+<a href="{% url "Reddit:edit_post" random_url.subreddit random_url.random_url random_url.slug %}">Edit post</a>
 
 {% if random_url.image %}
     <img src="{{ random_url.image.url }}"
@@ -12,7 +13,7 @@
     alt="image"/>
 {% endif %}
 
-
+<a href="{% url "Reddit:new_comment" random_url.subreddit random_url.random_url random_url.slug %}">New Comment:</a>
 {% for obj in object_list %}
     <br/>
     <li>
