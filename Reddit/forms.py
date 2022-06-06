@@ -29,3 +29,11 @@ class CommentForm(forms.ModelForm):
         labels = {'comment': ''}
         widgets = {'comment': forms.Textarea(attrs={'cols': 80,
                                                     'rows': 40})}
+
+
+class EditPostForm(PostForm):
+    class Meta(PostForm.Meta):
+        widgets = {'title': forms.Textarea(attrs={'readonly': 'readonly',
+                                                  'cols': 80,
+                                                  'rows': 1}),
+                   'post': forms.Textarea(attrs={'cols': 80})}

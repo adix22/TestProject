@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from .models import Subreddit, Post, Comment
-from .forms import SubredditForm, PostForm, CommentForm
+from .forms import SubredditForm, PostForm, CommentForm, EditPostForm
 
 
 def index(request):
@@ -121,10 +121,10 @@ def edit_post(request, subreddit_name, random_url, slug):
 
     if request.method != 'POST':
         # Initial request; pre fill form with the current entry.
-        form = PostForm(instance=random_url)
+        form = EditPostForm(instance=random_url)
     else:
         # POST data submitted; process data
-        form = PostForm(instance=random_url, data=request.POST)
+        form = EditPostForm(instance=random_url, data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('Reddit:post', subreddit_name=subreddit_name, random_url=random_url.random_url, slug=slug)
