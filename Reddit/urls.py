@@ -25,6 +25,10 @@ urlpatterns = [
          views.new_comment, name='new_comment'),
     # Edit post.
     path('subreddits/<str:subreddit_name>/<uuid:random_url>/<slug:slug>/edit_post/', views.edit_post, name='edit_post'),
+    # Edit comment.
+    path('subreddits/<str:subreddit_name>/<uuid:random_url>/<slug:slug>/<uuid:temporary_key>/edit_comment/',
+         views.edit_comment,
+         name='edit_comment'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

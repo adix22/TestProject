@@ -2,8 +2,12 @@
 {% block content %}
 <a href="{% url "Reddit:subreddit" name %}">{{ name }}</a>
 
+<p>{{ random_url.date_added }}</p>
 <p>{{ title }}</p>
 <p>{{ post }}</p>
+{% if random_url.is_edited %}
+<p>This post was edited</p>
+{% endif %}
 <a href="{% url "Reddit:edit_post" random_url.subreddit random_url.random_url random_url.slug %}">Edit post</a>
 
 {% if random_url.image %}
@@ -12,13 +16,25 @@
     height="500"
     alt="image"/>
 {% endif %}
-
+<br/>
+<br/>
+<br/>
 <a href="{% url "Reddit:new_comment" random_url.subreddit random_url.random_url random_url.slug %}">New Comment:</a>
+<br/>
+<br/>
 {% for obj in object_list %}
     <br/>
     <li>
+    <a href="{% url "Reddit:edit_comment" random_url.subreddit random_url.random_url random_url.slug obj.temporary_key %}">
+    Edit comment: </a>
     <ul>{{ obj.date_added|date:'Y. M d, H:i' }}</ul>
-    <ul>{{ obj.comment|linebreaks }}</ul>
+    <ul>{{ obj.comment }}  -  {{ obj.owner }}</ul>
+    <ul>
+        {% if obj.is_edited %}
+         This comment was edited.
+        {% endif %}
+    </ul>
+
     </li>
     <br/>
     {% empty %}

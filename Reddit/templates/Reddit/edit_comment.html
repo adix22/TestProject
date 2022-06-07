@@ -1,0 +1,14 @@
+{% extends 'Reddit/base.html' %}
+
+{% block content %}
+
+    <p><a href="{% url 'Reddit:subreddit' random_url.subreddit %}">{{ name }}</a></p>
+
+    <p>Edit comment:</p>
+    <form action="{% url 'Reddit:edit_comment' random_url.subreddit random_url.random_url random_url.slug temporary_key %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit">Save changes</button>
+    </form>
+
+{% endblock content %}
