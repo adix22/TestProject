@@ -5,6 +5,7 @@ from .forms import SubredditForm, PostForm, CommentForm, EditPostForm
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 
+
 def index(request):
     """The home page for Reddit"""
     return render(request, 'Reddit/index.html')
@@ -46,6 +47,7 @@ def post(request, subreddit_name, random_url, slug):
 
     return render(request, 'Reddit/post.html', context)
 
+
 @login_required
 def new_subreddit(request):
     """Add new subreddit"""
@@ -65,6 +67,7 @@ def new_subreddit(request):
     context = {'form': form}
     return render(request, 'Reddit/new_subreddit.html', context)
 
+
 @login_required
 def new_post(request, subreddit_name):
     """Add new post to a subreddit"""
@@ -75,7 +78,7 @@ def new_post(request, subreddit_name):
         form = PostForm()
     else:
         # process data
-        form = PostForm(data=request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             new_post = form.save(commit=False)
             new_post.subreddit = subreddit
@@ -87,6 +90,7 @@ def new_post(request, subreddit_name):
     context = {'subreddit': subreddit,
                'form': form}
     return render(request, 'Reddit/new_post.html', context)
+
 
 @login_required
 def new_comment(request, subreddit_name, random_url, slug):
@@ -114,6 +118,7 @@ def new_comment(request, subreddit_name, random_url, slug):
                'slug': slugn,
                'form': form}
     return render(request, 'Reddit/new_comment.html', context)
+
 
 @login_required
 def edit_post(request, subreddit_name, random_url, slug):
@@ -146,6 +151,7 @@ def edit_post(request, subreddit_name, random_url, slug):
                'post': post,
                'form': form}
     return render(request, 'Reddit/edit_post.html', context)
+
 
 @login_required
 def edit_comment(request, subreddit_name, random_url, slug, temporary_key):

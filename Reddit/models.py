@@ -27,6 +27,7 @@ class Post(models.Model):
     random_url = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
     slug = models.SlugField(max_length=50, null=True, blank=True)
     is_edited = models.BooleanField(default=False)
+    is_image = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         """Slugify title to use as url"""

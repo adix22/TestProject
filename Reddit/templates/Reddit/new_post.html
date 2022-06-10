@@ -5,7 +5,7 @@
     <p><a href="{% url 'Reddit:subreddit' subreddit %}">{{ name }}</a></p>
 
     <p>Add new post:</p>
-    <form action="{% url 'Reddit:new_post' subreddit %}" method="post">
+    <form action="{% url 'Reddit:new_post' subreddit %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button name="submit">Add post</button>
