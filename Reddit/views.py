@@ -137,7 +137,7 @@ def edit_post(request, subreddit_name, random_url, slug):
         form = EditPostForm(instance=random_url)
     else:
         # POST data submitted; process data
-        form = EditPostForm(instance=random_url, data=request.POST)
+        form = EditPostForm(instance=random_url, data=request.POST, files=request.FILES)
         if form.is_valid():
             editted_post = form.save(commit=False)
             editted_post.is_edited = True
